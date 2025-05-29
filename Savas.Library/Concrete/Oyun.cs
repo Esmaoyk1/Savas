@@ -1,7 +1,9 @@
 ﻿using Savas.Library.Enum;
 using Savas.Library.Interface;
 using System;
-using System.Timers;
+using System.Windows.Forms; // Panel ve Timer için
+using System.Drawing; // Image için
+using Timer = System.Windows.Forms.Timer; // Ambiguity'yi kaldırmak için
 
 namespace Savas.Library.Concrete
 {
@@ -11,6 +13,7 @@ namespace Savas.Library.Concrete
 
         private readonly Timer _gecenSureTimer = new Timer { Interval = 1000 };
         private TimeSpan _gecenSure;
+        private readonly Panel _ucaksavarPanel;
 
         #endregion
 
@@ -24,7 +27,7 @@ namespace Savas.Library.Concrete
 
         public bool DevamEdiyorMu { get; private set; }
 
-        public TimeSpan GecenSure // Sadece bir tanım
+        public TimeSpan GecenSure
         {
             get => _gecenSure;
             private set
@@ -38,12 +41,13 @@ namespace Savas.Library.Concrete
 
         #region Metotlar
 
-        public Oyun()
+        public Oyun(Panel ucaksavarPanel)
         {
-            _gecenSureTimer.Elapsed += GecenSureTimer_Tick;
+            _ucaksavarPanel = ucaksavarPanel;
+            _gecenSureTimer.Tick += GecenSureTimer_Tick;
         }
 
-        private void GecenSureTimer_Tick(object sender, ElapsedEventArgs e)
+        private void GecenSureTimer_Tick(object sender, EventArgs e)
         {
             GecenSure += TimeSpan.FromSeconds(1);
         }
@@ -54,6 +58,24 @@ namespace Savas.Library.Concrete
 
             DevamEdiyorMu = true;
             _gecenSureTimer.Start();
+            UcaksavarOlustur();
+        }
+
+        private void UcaksavarOlustur()
+        {
+            try
+            {
+                var ucaksavar = new Ucaksavar(_ucaksavarPanel.Width)
+                {
+                    Image = Image.FromFile(@"C:\Users\ESMANUR\Desktop\SavasOyunu\Gorseller\Ucaksavar.png")
+                };
+
+                _ucaksavarPanel.Controls.Add(ucaksavar);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Görsel yüklenemedi: {ex.Message}");
+            }
         }
 
         private void Bitir()
