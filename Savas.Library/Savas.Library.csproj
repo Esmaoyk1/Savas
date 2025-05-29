@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\Oyun.cs" />
+    <Compile Include="Enum\Yon.cs" />
+    <Compile Include="Interface\IOyun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Absract\" />
-    <Folder Include="Concrete\" />
-    <Folder Include="Enum\" />
-    <Folder Include="Interface\" />
     <Folder Include="Static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

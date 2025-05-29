@@ -77,7 +77,7 @@
             this.bilgiLabel.TabIndex = 0;
             this.bilgiLabel.Text = "Oyunu başlatmak için ENTER tuşuna basın.\r\nUçaksavarı hareket ettirmek için SAG/SO" +
     "L yön tuşlarına basın. \r\nAteş etmek için BOŞLUK tuşuna basın";
-            this.bilgiLabel.Click += new System.EventHandler(this.label1_Click);
+            //this.bilgiLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // sureLabel
             // 
@@ -103,6 +103,7 @@
             this.Name = "AnaForm";
             this.Text = "Savaş Oyunu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AnaForm_KeyDown);
             this.bilgiPanel.ResumeLayout(false);
             this.bilgiPanel.PerformLayout();
             this.ResumeLayout(false);
