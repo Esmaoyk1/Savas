@@ -12,7 +12,7 @@ namespace Savas.Desktop
         public AnaForm()
         {
             InitializeComponent();
-            _oyun = new Oyun(ucaksavarPanel);
+            _oyun = new Oyun(ucaksavarPanel, savasAlaniPanel);
             _oyun.GecenSureDegisti += Oyun_GecenSureDegisti;
         }
 
@@ -45,6 +45,11 @@ namespace Savas.Desktop
             {
                 sureLabel.Text = _oyun.GecenSure.ToString();
             }
+        }
+
+        private void AnaForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
